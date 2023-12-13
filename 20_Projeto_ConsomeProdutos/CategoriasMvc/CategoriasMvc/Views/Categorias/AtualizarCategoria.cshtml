@@ -1,0 +1,44 @@
+﻿@model CategoriasMvc.Models.CategoriaViewModel
+
+<h3>Atualizar Categoria</h3>
+<hr />
+<form asp-action="AtualizarCategoria">
+
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="CategoriaId" />
+    <div class="form-group">
+        <label asp-for="Nome" class="control-label"></label>
+        <input asp-for="Nome" class="form-control" />
+        <span asp-validation-for="Nome" class="text-danger"></span>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-6">
+            <label asp-for="ImagemUrl" class="control-label"></label>
+            <input asp-for="ImagemUrl" class="form-control" />
+            <span asp-validation-for="ImagemUrl" class="text-danger"></span>
+        </div>
+        <div class="form-group col-md-6" style="padding-top: 10px">
+          @if(string.IsNullOrEmpty(@Model.ImagemUrl))
+          {
+              <img src="~/imagens/noimage1.png" />
+          }
+          else
+          {
+              <img src="@Model.ImagemUrl" />
+          }
+        </div>
+    </div>
+    <div class="form-group" style="padding-top: 10px">
+        <input type="submit" value="Salvar" class="btn btn-primary" />
+        <a asp-action="Index" class="btn btn-info">Retornar</a>
+    </div>
+    @if(@ViewBag.Erro != null)
+    {
+       <div style="color:red">
+         <h4>@ViewBag.Erro</h4> 
+       </div>
+    }
+</form>
+
+
